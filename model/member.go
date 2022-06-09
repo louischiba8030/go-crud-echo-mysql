@@ -46,3 +46,9 @@ func (p *Member) DropTable() (tx *gorm.DB) {
 
 	return nil
 }
+
+func (p *Member) CreateTable() (tx *gorm.DB) {
+	DB.Migrator().CreateTable(&p)
+
+	return nil
+}
