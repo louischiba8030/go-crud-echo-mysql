@@ -1,0 +1,16 @@
+[
+  {
+    "name": "addentry",
+    "path": "/addentry",
+    "component": "C:\\\\Users\\\\robert\\\\Documents\\\\Programs\\\\Golang\\\\go-crud-echo-mysql\\\\frontend\\\\pages\\\\addentry.vue",
+    "chunkName": "pages/addentry",
+    "_name": "_d2a42792"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\robert\\\\Documents\\\\Programs\\\\Golang\\\\go-crud-echo-mysql\\\\frontend\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_397da37c"
+  }
+]

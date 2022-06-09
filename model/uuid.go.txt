@@ -1,0 +1,11 @@
+package typedef
+
+import (
+	"errors"
+	"strconv"
+)
+
+type UUID uint64
+func (u UUID) IsZero() bool {
+	return u == 0
+}
