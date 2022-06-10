@@ -13,9 +13,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_de9b3262 from 'nuxt_plugin_plugin_de9b3262' // Source: .\\components\\plugin.js (mode: 'all')
-import nuxt_plugin_plugin_3b305f85 from 'nuxt_plugin_plugin_3b305f85' // Source: .\\vuetify\\plugin.js (mode: 'all')
-import nuxt_plugin_axios_2eab4d1c from 'nuxt_plugin_axios_2eab4d1c' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_plugin_ebb9b09a from 'nuxt_plugin_plugin_ebb9b09a' // Source: .\\components\\plugin.js (mode: 'all')
+import nuxt_plugin_plugin_232de921 from 'nuxt_plugin_plugin_232de921' // Source: .\\vuetify\\plugin.js (mode: 'all')
+import nuxt_plugin_axios_13aa5056 from 'nuxt_plugin_axios_13aa5056' // Source: .\\axios.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -55,7 +55,7 @@ Object.defineProperty(Vue.prototype, '$nuxt', {
 
 Vue.use(Meta, {"keyName":"head","attribute":"data-n-head","ssrAttribute":"data-n-head-ssr","tagIDKeyName":"hid"})
 
-const defaultTransition = {"name":"page","mode":"out-in","appear":false,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
+const defaultTransition = {"name":"page","mode":"out-in","appear":true,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
 
 const originalRegisterModule = Vuex.Store.prototype.registerModule
 
@@ -75,15 +75,12 @@ async function createApp(ssrContext, config = {}) {
   // Add this.$router into store actions/mutations
   store.$router = router
 
-  // Fix SSR caveat https://github.com/nuxt/nuxt.js/issues/3757#issuecomment-414689141
-  store.registerModule = registerModule
-
   // Create Root instance
 
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"meta":[],"link":[{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+    head: {"title":"crud-sample1","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
 
     store,
     router,
@@ -212,16 +209,16 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_de9b3262 === 'function') {
-    await nuxt_plugin_plugin_de9b3262(app.context, inject)
+  if (typeof nuxt_plugin_plugin_ebb9b09a === 'function') {
+    await nuxt_plugin_plugin_ebb9b09a(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_plugin_3b305f85 === 'function') {
-    await nuxt_plugin_plugin_3b305f85(app.context, inject)
+  if (typeof nuxt_plugin_plugin_232de921 === 'function') {
+    await nuxt_plugin_plugin_232de921(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_2eab4d1c === 'function') {
-    await nuxt_plugin_axios_2eab4d1c(app.context, inject)
+  if (typeof nuxt_plugin_axios_13aa5056 === 'function') {
+    await nuxt_plugin_axios_13aa5056(app.context, inject)
   }
 
   // Lock enablePreview in context
