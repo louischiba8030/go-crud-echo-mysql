@@ -63,14 +63,14 @@ export default {
 				});
 			}
 
-		  this.resetmember({ id: 0, name: "", age: "", bloodtype: 0, origin: "" })
+		  this.resetmember({ ID: 0, name: "", age: "", bloodtype: 0, origin: "" })
 		  this.$store.commit(
 			  "members/storeData",
 			  (await this.$axios.get("/api/members/")).data
   		);
 		},
 		resetmember(member) {
-			this.$store.commit("member/setId", member.id)
+			this.$store.commit("member/setId", member.ID)
 			this.$store.commit("member/setName", member.name)
 			this.$store.commit("member/setAge", member.age)
 			this.$store.commit("member/setBloodtype", member.bloodtype)

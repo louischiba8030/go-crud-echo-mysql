@@ -7,6 +7,13 @@
     "_name": "_d2a42792"
   },
   {
+    "name": "editentry",
+    "path": "/editentry",
+    "component": "C:\\\\Users\\\\robert\\\\Documents\\\\Programs\\\\Golang\\\\go-crud-echo-mysql\\\\frontend\\\\pages\\\\editentry.vue",
+    "chunkName": "pages/editentry",
+    "_name": "_23e6d15c"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "C:\\\\Users\\\\robert\\\\Documents\\\\Programs\\\\Golang\\\\go-crud-echo-mysql\\\\frontend\\\\pages\\\\index.vue",

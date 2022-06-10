@@ -35,8 +35,8 @@ type Member struct {
 	Origin	string	`json:"origin" gorm:"type:varchar(255);not null"`
 }
 
-func (p *Member) FirstById(id uint) (tx *gorm.DB) {
-	return DB.Where("id = ?", id).First(&p)
+func (p *Member) FirstById(id uuid.UUID) (tx *gorm.DB) {
+	return DB.Where("ID = ?", id).First(&p)
 }
 
 func (p *Member) Create() (tx *gorm.DB) {
@@ -48,16 +48,24 @@ func (p *Member) Save() (tx *gorm.DB) {
 	return DB.Save(&p)
 }
 
-func (p *Member) Updates() (tx *gorm.DB) {
-	return DB.Model(&p).Updates(p)
+func (p *Member) Updates(id uuid.UUID) (tx *gorm.DB) {
+	// fmt.Printf("id %v\n", id) // not p.ID ?
+	// fmt.Printf("p.Name %v\n", p.Name)
+	return DB.Model(&p).Where("ID = ?", id).Updates(
+		Member{
+			Name: p.Name,
+			Age: p.Age,
+			Bloodtype:p.Bloodtype,
+			Origin: p.Origin,
+		})
 }
 
 func (p *Member) Delete() (tx *gorm.DB) {
 	return DB.Delete(&p)
 }
 
-func (p *Member) DeleteById (id uint) (tx *gorm.DB) {
-	return DB.Where("id = ?", id).Delete(&p)
+func (p *Member) DeleteById (id uuid.UUID) (tx *gorm.DB) {
+	return DB.Where("ID = ?", id).Delete(&p)
 }
 
 func (p *Member) DropTable() (tx *gorm.DB) {

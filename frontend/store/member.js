@@ -1,5 +1,5 @@
 export const state = () => ({
-	id: "",
+	ID: "",
 	name: "",
 	age: "",
 	bloodtype: "",
@@ -8,7 +8,7 @@ export const state = () => ({
 
 export const mutations = {
 	setId: (state, data) => {
-		state.id = data
+		state.ID = data
 	},
 	setName: (state, data) => {
 		state.name = data

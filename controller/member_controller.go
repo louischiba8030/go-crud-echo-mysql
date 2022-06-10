@@ -5,18 +5,27 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
+	"github.com/google/uuid"
+
 	"go-crud-echo-mysql/model"
 
 	"fmt"
 )
 
 func GetMember(c echo.Context) error {
-	i, _ := strconv.Atoi(c.Param("id"))
-	id := uint(i)
-	res := model.Member{}
-	res.FirstById(id)
+	m := model.Member{}
 
-	return c.JSON(http.StatusOK, res)
+	if c_uuid, err := uuid.Parse(c.Param("id")); err != nil {
+		fmt.Println(err)
+		return err
+	} else {
+		fmt.Println(c_uuid)
+		m.FirstById(c_uuid)
+	}
+	fmt.Printf("m.ID = %v", m.ID)
+	fmt.Printf("m.Name = %v", m.Name)
+
+	return c.JSON(http.StatusOK, m)
 }
 
 func GetAllMembers(c echo.Context) error {
@@ -41,4 +50,36 @@ func CreateMember(c echo.Context) (err error) {
 	member.Create()
 	
 	return c.JSON(http.StatusOK, member)
+}
+
+func UpdateMember (c echo.Context) (err error) {
+	p, _ := strconv.Atoi(c.FormValue("age"))
+	age := uint(p)
+
+	c_uuid, _ := uuid.Parse(c.Param("id"))
+	fmt.Printf("c_uuid = ", c_uuid)
+	m := model.Member {
+		Name: c.FormValue("name"),
+		Age: age,
+		Bloodtype: c.FormValue("bloodtype"),
+		Origin: c.FormValue("origin"),
+	}
+	fmt.Println(c.FormValue("age"))
+	m.Updates(c_uuid)
+
+	return c.JSON(http.StatusOK, m)
+}
+
+func DeleteMember (c echo.Context) (err error) {
+	m := model.Member{}
+
+	if c_uuid, err := uuid.Parse(c.Param("id")); err != nil {
+		fmt.Println(err)
+		return err
+	} else {
+		fmt.Println(c_uuid)
+		m.DeleteById(c_uuid)
+	}
+
+	return c.JSON(http.StatusOK, m)
 }

@@ -39,6 +39,8 @@ func main() {
 	e.GET("/api/members/", controller.GetAllMembers)
 	e.POST("/api/members/create", controller.CreateMember)
 	e.GET("/api/members/:id", controller.GetMember)
+	e.PUT("/api/members/:id", controller.UpdateMember)
+	e.DELETE("/api/members/:id", controller.DeleteMember)
 
 	// Launch server at port 8003
 	e.Logger.Fatal(e.Start(":8003"))

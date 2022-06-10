@@ -3,10 +3,10 @@
 		<h2>Table</h2>
 		<v-data-table :headers="headers" :items="members">
 			<template v-slot:[`item.edit`]="{ item }">
-				<v-btn color="success" @click="editItem(item._id)">Edit</v-btn>
+				<v-btn color="success" nuxt to="editentry">Edit</v-btn>
 			</template>
 			<template v-slot:[`item.delete`]="{ item }">
-				<v-btn color="danger" @click="deleteItem(item._id)">Delete</v-btn>
+				<v-btn color="danger" @click="deleteItem(item.ID)">Delete</v-btn>
 			</template>
 		</v-data-table>
 	</div>
@@ -17,7 +17,7 @@ export default {
 	data () {
 		return {
 			headers: [
-				{ text: 'Id', value: '_id' },
+				{ text: 'ID', value: 'ID' },
 				{ text: 'Name', value: 'name' },
 				{ text: 'Age', value: 'age' },
 				{ text: 'Bloodtype', value: 'bloodtype' },
@@ -39,15 +39,15 @@ export default {
 		);
 	},
 	methods: {
-		async deleteItem(id) {
-			await this.$axios.delete("/api/members/" + id)
+		async deleteItem(ID) {
+			await this.$axios.delete("/api/members/" + ID)
 			this.$store.commit(
 				"members/storeData",
 				(await this.$axios.get("/api/members/")).data
 			);
 		},
-		async editItem(member) {
-			this.$store.commit("member/setId", member._id);
+		async editItem(member) { // member
+			this.$store.commit("member/setId", member.ID);
 			this.$store.commit("member/setName", member.name);
 			this.$store.commit("member/setAge", member.age);
 			this.$store.commit("member/setBloodtype", member.bloodtype);
